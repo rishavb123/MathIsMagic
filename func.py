@@ -1,9 +1,13 @@
 import numpy as np
 
-def calculate(z, s):
+def calculate(z, s, constrained=True):
     c = z ** 2 + z * (2 * s + 1) + (s **2 + s - 1)
 
     x = (1/3) * (np.sqrt(4 + 3 * c) - 2)
+    if constrained and x > z:
+        x = z
+    if constrained and x < 0:
+        x = 0
     x_round = np.round(x)
 
     y = z - x
